@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>eventloop-0</title>
+  </head>
+  <body>
+    <button id="btn">click</button>
+    <script>
+      new Promise((resolve) => {
+        resolve(1)
+      }).then(console.log)
+      setTimeout(console.log, 0, 2)
+      btn.addEventListener('click', function () {
+        console.log(3)
+        new Promise((resolve) => {
+          resolve(4)
+        }).then(console.log)
+        setTimeout(console.log, 0, 5)
+      })
+      btn.addEventListener('click', function () {
+        console.log(6)
+        new Promise((resolve) => {
+          resolve(7)
+        }).then(console.log)
+        setTimeout(console.log, 0, 8)
+      })
+    </script>
+  </body>
+</html>
