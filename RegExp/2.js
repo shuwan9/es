@@ -9,7 +9,9 @@ let REG_1 = /(?!^)(?=(\d{3})+?$)/g
   '12345678',
   '123456789',
   '1234567890'
-].forEach((i) => console.log(i.replace(REG_1, ',')))
+]
+  .map((i) => parseFloat(i).toFixed(2) + '')
+  .forEach((i) => console.log(i.replace(REG_1, ',')))
 let REG_2 = /(?!$)(?<=\.(\d{3})+?)/g
 ;[
   '0.1',
@@ -21,7 +23,9 @@ let REG_2 = /(?!$)(?<=\.(\d{3})+?)/g
   '0.12345678',
   '0.123456789',
   '0.1234567890'
-].forEach((i) => console.log(i.replace(REG_2, ',')))
+]
+  .map((i) => parseFloat(i).toFixed(2) + '')
+  .forEach((i) => console.log(i.replace(REG_2, ',')))
 const REG_3 = /(?!$)(?<=^(\d{3})+?)/g
 ;[
   '123.123',
@@ -33,13 +37,15 @@ const REG_3 = /(?!$)(?<=^(\d{3})+?)/g
   '123456789.123456789',
   '1234567890.1234567890',
   '1234567890'
-].forEach((i) =>
-  console.log(
-    /\./.test(i)
-      ? [
-          i.split('.')[0].replace(REG_1, ','),
-          i.split('.')[1].replace(REG_3, ',')
-        ].join('.')
-      : i.replace(REG_1, ',')
+]
+  .map((i) => parseFloat(i).toFixed(2) + '')
+  .forEach((i) =>
+    console.log(
+      /\./.test(i)
+        ? [
+            i.split('.')[0].replace(REG_1, ','),
+            i.split('.')[1].replace(REG_3, ',')
+          ].join('.')
+        : i.replace(REG_1, ',')
+    )
   )
-)
