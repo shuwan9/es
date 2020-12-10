@@ -1,0 +1,10 @@
+<script>
+  setTimeout(console.log, 0, 0)
+  requestAnimationFrame(() => {
+    console.log(1)
+  })
+  Promise.resolve(2).then(console.log)
+  queueMicrotask(() => {
+    console.log(3)
+  })
+</script>
