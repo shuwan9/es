@@ -1,0 +1,53 @@
+<button id="btn">click</button>
+<button id="btn_">click_</button>
+<button id="btn__">click__</button>
+<script>
+  function debounce(fn, duration) {
+    let timer
+    return () => {
+      if (timer) {
+        clearTimeout(timer)
+      }
+      timer = setTimeout(() => {
+        fn()
+      }, duration)
+    }
+  }
+  function throttle(fn, duration) {
+    let start = Date.now()
+    return () => {
+      let now = Date.now()
+      if (now - start > duration) {
+        fn()
+        start = Date.now()
+      }
+    }
+  }
+  function throttle_(fn, duration) {
+    let timer
+    return () => {
+      if (timer) {
+        return
+      }
+      timer = setTimeout(() => {
+        fn()
+        timer = null
+      }, duration)
+    }
+  }
+</script>
+<script>
+  btn.addEventListener(
+    'click',
+    debounce(() => console.log('clicked'), 1000)
+  )
+  let start = Date.now()
+  btn_.addEventListener(
+    'click',
+    throttle(() => console.log('clicked'), 1000)
+  )
+  btn__.addEventListener(
+    'click',
+    throttle_(() => console.log('clicked'), 1000)
+  )
+</script>
